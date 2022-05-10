@@ -1,0 +1,14 @@
+.top-homebox {
+    width: 60%;
+    color: white;
+    float: right;
+}
+.welcome-title {
+    font-size: 65px;
+    margin: 0;
+}
+.welcome-paragraph {
+    font-size: 14px;
+    font-weight:bolder;
+    margin-top: 0;
+}

@@ -1,9 +1,12 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Home from "./components/Home /Home";
+import Home from "./components/Home/Home";
 import About from "./components/About/About";
-
+import Anime from "./components/Anime/Anime";
+import Favorites from "./components/Favorites/Favorites";
+import Show from "./components/Show/Show";
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -21,14 +24,15 @@ function App() {
     <div className="App">
       <Router>
         <Navbar user={user} setUser={setUser} />
-      </Router>
-      <Switch>
+        <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
         <Route exact path="favorites" component={Favorites} />
         <Route exact path="/animes/:id" component={Show} />
-        <Route exact path="" component={} />
+        <Route exact path="animes" component={Anime} />
       </Switch>
+      </Router>
+      
     </div>
   );
 }

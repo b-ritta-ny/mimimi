@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 
-export default function Navbar() {
+export default function Navbar({ user, setUser }) {
     const [click, setClick] = useState(false);
 
     const handleClick = () => setClick(!click);
@@ -16,19 +16,9 @@ export default function Navbar() {
     }
     return (
         <div>
-            <navbar>
-                <div className='user-div'>
-                    {user ? (
-                        <button onClick={handleLogoutClick}>Logout</button>
-                    ) : (
-                        <>
-                            <Link to="/signup" className='user-link'>Signup</Link>
-                            <Link to="/login" className='user-link'>Login</Link>
-                        </>
-                    )}
-                </div>
+            <nav className='navbar'>
                 <Link to="/" className="navbar-logo">
-                    Plants and Plants
+                    Otaku Center 
                 </Link>
                 <ul className={click ? 'navbar-list active' : 'navbar-list'}>
                         <li className='nav-item'>
@@ -52,7 +42,17 @@ export default function Navbar() {
                             </Link>
                         </li>
                     </ul>
-            </navbar>
+                    <div className='user-div'>
+                    {user ? (
+                        <button onClick={handleLogoutClick}>Logout</button>
+                    ) : (
+                        <>
+                            <Link to="/signup" className='user-link'>Signup</Link>
+                            <Link to="/login" className='user-link'>Login</Link>
+                        </>
+                    )}
+                </div>
+            </nav>
         </div>
     )
 }
