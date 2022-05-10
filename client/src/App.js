@@ -29,7 +29,7 @@ function App() {
         <Route exact path="/about" component={About} />
         <Route exact path="favorites" component={Favorites} />
         <Route exact path="/animes/:id" component={Show} />
-        <Route exact path="animes" component={Anime} />
+        <Route exact path="/animes" component={Anime} />
       </Switch>
       </Router>
       

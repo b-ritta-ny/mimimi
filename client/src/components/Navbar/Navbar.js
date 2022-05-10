@@ -27,7 +27,7 @@ export default function Navbar({ user, setUser }) {
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/anime' className='nav-links' onClick={handleClick}>
+                            <Link to='/animes' className='nav-links' onClick={handleClick}>
                                 Anime
                             </Link>
                         </li>
