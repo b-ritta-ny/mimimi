@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom';
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Anime from "./components/Anime/Anime";
@@ -10,7 +10,7 @@ import Navbar from './components/Navbar/Navbar';
 
 function App() {
   const [user, setUser] = useState(null);
-   
+
   // useEffect(() => { 
   //    //auto-login
   //   fetch("/auth").then((res) => {
@@ -19,20 +19,20 @@ function App() {
   //     }
   //   });
   // }, []);
+  //if(!user) return <Welcome setUser={setUser}/>
 
   return (
     <div className="App">
-      <Router>
-        <Navbar user={user} setUser={setUser} />
-        <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="favorites" component={Favorites} />
-        <Route exact path="/animes/:id" component={Show} />
-        <Route exact path="/animes" component={Anime} />
-      </Switch>
-      </Router>
       
+        <Navbar user={user} setUser={setUser} />
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/about" element={<About />}/>
+          <Route path="favorites" element={<Favorites />}/>
+          <Route path="/animes/:id" element={<Show />}/>
+          <Route path="/animes" element={<Anime />}/>
+        </Routes>
+
     </div>
   );
 }
