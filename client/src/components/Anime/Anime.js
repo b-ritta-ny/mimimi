@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Cards from '../Cards/Cards';
+import './Anime.css'
 
 export default function Anime() {
   const [animes, setAnimes] = useState([]);

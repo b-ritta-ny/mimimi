@@ -4,7 +4,7 @@ import './Cards.css';
 
 export default function Cards({ shows }) {
   return (
-    <div>
+    <div className='card-container'>
         {shows?.map((show) => {
             return (
                 <div key={show.id} className="card">

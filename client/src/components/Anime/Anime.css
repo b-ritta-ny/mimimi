@@ -1,0 +1,6 @@
+.anime-container {
+    background-color: white;
+}
+.anime-container > h1 {
+    color: black;
+}
