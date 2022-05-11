@@ -5,20 +5,20 @@ import './Show.css';
 
 
 export default function Show() {
-  // const { id } = useParams();
+  const { id } = useParams();
   const [show, setShow] = useState([]);
   //const [reviews, setReviews] = useState([]);
 
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:4000/animes/${id}`)
-  //     .then((res) => res.json())
-  //     .then((anime) => {
-  //       //setReviews(anime.reviews)
-  //       console.log(anime)
-  //       setShow(anime)
-  //     })
-  // }, [])
+  useEffect(() => {
+    fetch(`http://localhost:4000/animes/${id}`)
+      .then((res) => res.json())
+      .then((anime) => {
+        //setReviews(anime.reviews)
+        console.log(anime)
+        setShow(anime)
+      })
+  }, [])
   // function handleChange(event) {
   //   setRevForm({
   //     ...revform,
