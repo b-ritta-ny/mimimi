@@ -7,47 +7,52 @@ import './Show.css';
 export default function Show() {
   const { id } = useParams();
   const [show, setShow] = useState([]);
-  //const [reviews, setReviews] = useState([]);
-
+  const [reviews, setReviews] = useState([]);
+  const [revform, setRevForm] = useState({
+    anime_id: id,
+    comment: undefined,
+    score: undefined,
+    title: undefined
+  })
 
   useEffect(() => {
     fetch(`http://localhost:4000/animes/${id}`)
       .then((res) => res.json())
       .then((anime) => {
-        //setReviews(anime.reviews)
+        setReviews(anime.reviews)
         console.log(anime)
         setShow(anime)
       })
   }, [])
-  // function handleChange(event) {
-  //   setRevForm({
-  //     ...revform,
-  //     [event.target.name]: event.target.value,
-  //   })
-  // }
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   fetch("http://localhost:4000/reviews", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(revform),
-  //   })
-  //     .then((res) => {
-  //       if(res.ok){
-  //         res.json().then((newReview) => {
-  //           setReviews([...reviews, newReview])
-  //           setRevForm({
-  //             anime_id: id,
-  //             comment: "",
-  //             score: "",
-  //             title: ""
-  //           })
-  //         })
-  //       }
-  //     })
-  // }
+  function handleChange(event) {
+    setRevForm({
+      ...revform,
+      [event.target.name]: event.target.value,
+    })
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    fetch("http://localhost:4000/reviews", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(revform),
+    })
+      .then((res) => {
+        if(res.ok){
+          res.json().then((newReview) => {
+            setReviews([...reviews, newReview])
+            setRevForm({
+              anime_id: id,
+              comment: "",
+              score: "",
+              title: ""
+            })
+          })
+        }
+      })
+  }
   return (
     <div className='show-container'>
       <div className='show-left'>
