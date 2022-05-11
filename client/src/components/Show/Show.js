@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import Reviews from '../Reviews/Reviews';
 import './Show.css';
 
 
@@ -40,7 +41,7 @@ export default function Show() {
       body: JSON.stringify(revform),
     })
       .then((res) => {
-        if(res.ok){
+        if (res.ok) {
           res.json().then((newReview) => {
             setReviews([...reviews, newReview])
             setRevForm({
@@ -55,16 +56,21 @@ export default function Show() {
   }
   return (
     <div className='show-container'>
-      <div className='show-left'>
-        <img src={show.image} alt={show.name} className="show-image" />
-        <h1>{show.name}</h1>
+      <div className='show-top'>
+        <div className='show-left'>
+          <img src={show.image} alt={show.name} className="show-image" />
+          <h1>{show.name}</h1>
+        </div>
+        <div className='show-details'>
+          <h3>Studio {show.studio}</h3>
+          <h3>Episodes {show.episodes}</h3>
+          <p>{show.bio}</p>
+        </div>
       </div>
-      <div className='show-details'>
-        <h3>Studio {show.studio}</h3>
-        <h3>Episodes {show.episodes}</h3>
-        <p>{show.bio}</p>
+      <div className='reviews-div-container'>
+        <Reviews reviews={reviews} setReviews={setReviews} revform={revform}
+          handleChange={handleChange} />
       </div>
-      
     </div>
   )
 }
