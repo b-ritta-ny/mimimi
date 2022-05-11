@@ -4,8 +4,7 @@ class AnimesController < ApplicationController
         animes = Anime.all 
         render json: animes 
     end
-    def show
-        byebug 
+    def show 
         anime = Anime.find(params[:id])
         render json: anime 
     end
