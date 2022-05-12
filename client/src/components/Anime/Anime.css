@@ -1,6 +1,10 @@
 .anime-container {
-    background-color: white;
+    background: linear-gradient(90deg, rgba(52,175,210,1) 12%, rgba(177,63,165,1) 77%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .anime-container > h1 {
-    color: black;
+    color: white;
 }

@@ -7,12 +7,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: radial-gradient(circle, rgba(52,175,210,1) 23%, rgba(177,63,165,1) 95%);
 }
 .rev-container {
     display: flex;
 }
 .review-card {
-    border: 10px solid rgb(87, 28, 182);
+    border: 10px solid rgb(49, 28, 182);
     border-radius: 8px;
     width: 35%;
     padding: 15px;

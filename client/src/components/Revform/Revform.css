@@ -3,12 +3,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 .review-form {
-    border: 10px solid purple;
+    border: 10px solid rgb(59, 39, 140);
     border-radius: 15px;
     padding: 35px;
-
+    margin: 25px;
 }
 .review-form > label {
     margin: 10px 10px;
@@ -16,6 +17,8 @@
     flex-direction: column;
 }
 .rev-title-container {
+    background-color: rgb(65, 24, 64);
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,4 +29,5 @@
     justify-content: center;
     align-items: center;
     margin-right: 30px;
+    color: white;
 }

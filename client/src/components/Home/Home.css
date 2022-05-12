@@ -27,7 +27,7 @@
 }
 
 .mid-homebox {
-    background-color: rgb(43, 42, 44);
+    background: radial-gradient(circle, rgba(52,175,210,1) 23%, rgba(177,63,165,1) 95%);
     color: white;
     height: 60vh;
     display: flex;

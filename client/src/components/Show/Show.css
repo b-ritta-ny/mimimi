@@ -1,8 +1,8 @@
 .show-container {
-    background-color: rgb(159, 117, 187);
+    background: linear-gradient(90deg, rgba(52,175,210,1) 12%, rgba(177,63,165,1) 77%);
     display: flex;
     flex-direction: column;
-    height: 200vh;
+    
 }
 .show-top {
     display: flex;

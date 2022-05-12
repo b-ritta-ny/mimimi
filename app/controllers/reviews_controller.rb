@@ -8,4 +8,7 @@ class ReviewsController < ApplicationController
         review = Review.find(params[:id])
         render json: review 
     end
+    def create 
+        
+    end
 end
