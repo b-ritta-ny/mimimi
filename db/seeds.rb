@@ -33,3 +33,5 @@ Review.create(score: 4, comment: "MHA definitely has its slower moments, but boy
 Review.create(score: 4, comment: "What a great concept, with amazingly creepy and sharp styles! Hilarious comedy with enticing characters.", anime_id: 4, title: "So much fun!")
 Review.create(score: 4, comment: "This art stlye inspired by Tim Burton is so refreshing with great world building with a good mix of creepiness.", anime_id: 9, title: "Great art stlye!")
 Review.create(score: 5, comment: "Holy crab cakes was this such a good series, from its art stlye to its array of great characters!", anime_id: 6, title: "Loved it!")
+User.create(username: "daninteriano", password: 'geronimo', password_confirmation: 'geronimo')
+User.create(username: "natalieeyob", password: 'junketsu', password_confirmation: 'junketsu')
