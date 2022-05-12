@@ -44,7 +44,7 @@ export default function Navbar({ user, setUser }) {
                     </ul>
                     <div className='user-div'>
                     {user ? (
-                        <button onClick={handleLogoutClick}>Logout</button>
+                        <button onClick={handleLogoutClick} className="logout-button">Logout</button>
                     ) : (
                         <>
                             <Link to="/signup" className='user-link'>Signup</Link>

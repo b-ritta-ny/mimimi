@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Home from '../Home/Home';
 import './Login.css';
 
 export default function Login({ user, setUser }) {
@@ -21,6 +22,7 @@ export default function Login({ user, setUser }) {
           }
         });
     }
+    if(user) return <Home />
 
 
   return (

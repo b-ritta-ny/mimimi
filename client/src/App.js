@@ -13,15 +13,14 @@ import Login from './components/Login/Login';
 function App() {
   const [user, setUser] = useState(null);
 
-  // useEffect(() => { 
-  //    //auto-login
-  //   fetch("/auth").then((res) => {
-  //     if (res.ok) {
-  //       res.json().then((user) => setUser(user));
-  //     }
-  //   });
-  // }, []);
-  //if(!user) return <Welcome setUser={setUser}/>
+  useEffect(() => { 
+     //auto-login
+    fetch("/auth").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
   return (
     <div className="App">
@@ -32,12 +31,14 @@ function App() {
           <Route exact path="/about" component={About} />
           <Route exact path="favorites" component={Favorites} />
           <Route exact path="/animes/:id" component={Show} />
-          <Route exact path="/animes" component={Anime} />
           <Route exact path="/signup">
             <Signup user={user} setUser={setUser} />
           </Route>
           <Route exact path="/login">
             <Login user={user} setUser={setUser} />
+          </Route>
+          <Route exact path="/animes">
+            <Anime user={user} setUser={setUser} />
           </Route>
         </Switch>
       </Router>

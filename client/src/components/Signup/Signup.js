@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Home from '../Home/Home';
 import './Signup.css';
 
 export default function Signup({ user, setUser }) {
@@ -24,6 +25,8 @@ export default function Signup({ user, setUser }) {
           }
         });
       }
+    //if(!user) return <Welcome setUser={setUser}/>
+    if(user) return <Home />
 
 
 
