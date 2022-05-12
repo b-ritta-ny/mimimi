@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Reviews.css';
 
 export default function Reviewcard({ review, handleDelete, setReviews, reviews }) {
-    // const [trigger, setTrigger] = useState(false);
+    const [trigger, setTrigger] = useState(false);
     // const [updated, setUpdated] = useState({
     //     comment: review.comment,
     //     title: review.title,
@@ -15,9 +15,9 @@ export default function Reviewcard({ review, handleDelete, setReviews, reviews }
     //         [event.target.name]: event.target.value,
     //     })
     // }
-    // function handleEditClick() {
-    //     setTrigger(!trigger)
-    // }
+    function handleEditClick() {
+        setTrigger(!trigger)
+    }
     // function handleUpdateSubmission(event) {
     //     event.preventDefault()
     //     fetch(`http://localhost:4000/reviews/${review.id}`, {
@@ -39,14 +39,14 @@ export default function Reviewcard({ review, handleDelete, setReviews, reviews }
     return (
         // each individual review and it's information 
         <div className='review-card' key={review.id}>
-            {/* <h4>{review.title}</h4>
+            <h4>{review.title}</h4>
             <p className='review-comment'>{review.comment}</p>
             <h3>Rated {review.score} out of 5!</h3>
             <h3>by: {review?.author}</h3>
             <div className='review-buttons-div'>
                 <button onClick={() => handleDelete(review.id)}>Delete</button>
                 <button onClick={handleEditClick}>Edit</button>
-            </div> */}
+            </div>
             {/* this is the edit pop-up section controlled by trigger variable  */}
             {/* {trigger ?
                 <div className='revform-container' id='rev-form'>

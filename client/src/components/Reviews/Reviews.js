@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './Reviews.css';
 import Select from 'react-select'
-import Reviewcard from './Reviews';
+import Reviewcard from './Reviewcard';
+
 
 export default function Reviews({ reviews, setReviews, revform, handleChange }) {
     const [search, setSearch] = useState('All');
@@ -32,7 +33,7 @@ export default function Reviews({ reviews, setReviews, revform, handleChange }) 
         });
     }
     return (
-        <div>
+        <div className='reviews-container'>
             <h2>Anime Reviews</h2>
             <Select options={options} className="rev-select" onChange={(e) => setSearch(e.value)} />
             <div className='rev-container'>
