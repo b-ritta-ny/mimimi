@@ -7,6 +7,8 @@ import Anime from "./components/Anime/Anime";
 import Favorites from "./components/Favorites/Favorites";
 import Show from "./components/Show/Show";
 import Navbar from './components/Navbar/Navbar';
+import Signup from './components/Signup/Signup';
+import Login from './components/Login/Login';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -31,6 +33,12 @@ function App() {
           <Route exact path="favorites" component={Favorites} />
           <Route exact path="/animes/:id" component={Show} />
           <Route exact path="/animes" component={Anime} />
+          <Route exact path="/signup">
+            <Signup user={user} setUser={setUser} />
+          </Route>
+          <Route exact path="/login">
+            <Login user={user} setUser={setUser} />
+          </Route>
         </Switch>
       </Router>
     </div>
