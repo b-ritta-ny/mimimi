@@ -62,6 +62,7 @@ export default function Show() {
           <h1>{show.name}</h1>
         </div>
         <div className='show-details'>
+          <h3>Created by: {show.creator}</h3>
           <h3>Studio {show.studio}</h3>
           <h3>Episodes {show.episodes}</h3>
           <p>{show.bio}</p>
@@ -69,7 +70,7 @@ export default function Show() {
       </div>
       <div className='reviews-div-container'>
         <Reviews reviews={reviews} setReviews={setReviews} revform={revform}
-          handleChange={handleChange} />
+          handleChange={handleChange} handleSubmit={handleSubmit}/>
       </div>
     </div>
   )

@@ -1,16 +1,17 @@
 .show-container {
-    background-color: rgb(157, 147, 214);
+    background-color: rgb(159, 117, 187);
     display: flex;
     flex-direction: column;
-    height: 150vh;
+    height: 200vh;
 }
 .show-top {
     display: flex;
     padding: 40px;
 }
-.show-left{
+.show-left{ 
     width: 50%;
 }
+
 .show-details {
     width: 50%;
     display: flex;

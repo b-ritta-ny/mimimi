@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import './Reviews.css';
 import Select from 'react-select'
 import Reviewcard from './Reviewcard';
+import Revform from '../Revform/Revform';
 
 
-export default function Reviews({ reviews, setReviews, revform, handleChange }) {
+export default function Reviews({ handleSubmit, reviews, setReviews, revform, handleChange }) {
     const [search, setSearch] = useState('All');
+    
 
     const options = [
         { value: 'All', label: 'All' },
@@ -32,9 +34,18 @@ export default function Reviews({ reviews, setReviews, revform, handleChange }) 
             }
         });
     }
+    
+      
     return (
         <div className='reviews-container'>
-            <h2>Anime Reviews</h2>
+            <div className='rev-title-container'>
+                <div className='title-left'>
+                    <h2>What'd you think of the series?</h2>
+                    <h1>Let us know!</h1>
+                </div>
+                <Revform submit={handleSubmit} change={handleChange} form={revform}/>
+            </div>
+            <h1>Check out what other members had to say!</h1>
             <Select options={options} className="rev-select" onChange={(e) => setSearch(e.value)} />
             <div className='rev-container'>
                 {filteredReviews?.map((review) => {
