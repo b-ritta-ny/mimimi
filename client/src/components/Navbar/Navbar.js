@@ -32,7 +32,7 @@ export default function Navbar({ user, setUser }) {
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/favorite' className='nav-links' onClick={handleClick}>
+                            <Link to='/favorites' className='nav-links' onClick={handleClick}>
                                 Favorites
                             </Link>
                         </li>

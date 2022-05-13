@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Reviews from '../Reviews/Reviews';
 import './Show.css';
 
@@ -54,12 +54,29 @@ export default function Show() {
         }
       })
   }
+  function handleAdoption() {
+    let anime_id = id
+    fetch("http://localhost:4000/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ anime_id }),
+    }).then((res) => res.json())
+      .then((data) => console.log(data))
+  }
   return (
     <div className='show-container'>
       <div className='show-top'>
         <div className='show-left'>
           <img src={show.image} alt={show.name} className="show-image" />
           <h1>{show.name}</h1>
+          <NavLink to="/favorites"><button className='favorite-button' onClick={handleAdoption}><h3>Add to Favorites</h3></button></NavLink>
+          {/* <div className='users-lists'>
+            <h5>Adopted by Users like: {filteredUsers?.map((user) => (
+              <h4>{user.username}</h4>
+            ))}</h5>
+          </div> */}
         </div>
         <div className='show-details'>
           <h3>Created by: {show.creator}</h3>
