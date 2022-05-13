@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
     end
     def destroy
         review = find_review
+        byebug
         if @current_user.id == review.user_id 
             review.destroy
             head :no_content
@@ -25,13 +26,15 @@ class ReviewsController < ApplicationController
     end
     def update
         review = find_review
+        byebug 
         if @current_user.id == review.user_id 
             review.update!(review_params)
             render json: review, include: :user, status: :accepted 
         else 
             return render json: { error: "Not authorized" }, status: :unauthorized 
         end
-    end 
+    end
+
     private
 
     def find_review

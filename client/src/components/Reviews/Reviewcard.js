@@ -31,6 +31,7 @@ export default function Reviewcard({ review, handleDelete, setReviews, reviews }
             const updatedReviewsList = reviews?.filter((singleReview) => {
               return singleReview.id !== review.id 
             });
+            debugger;
             setReviews([...updatedReviewsList, updated])
             setTrigger(!trigger)
         }})

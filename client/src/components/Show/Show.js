@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import Login from '../Login/Login';
 import Reviews from '../Reviews/Reviews';
 import './Show.css';
 
 
-export default function Show() {
+export default function Show({ user, setUser }) {
   const { id } = useParams();
   const [show, setShow] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -25,6 +26,8 @@ export default function Show() {
         setShow(anime)
       })
   }, [])
+  if(!user) return <Login user={user} setUser={setUser} />
+
   function handleChange(event) {
     setRevForm({
       ...revform,
