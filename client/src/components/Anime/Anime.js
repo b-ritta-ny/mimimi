@@ -8,19 +8,28 @@ export default function Anime({ user, setUser }) {
   
   useEffect(() => {
     fetch("http://localhost:4000/animes")
-      .then((res) => res.json())
-      .then((fetchedAnimes) => {
-        console.log(fetchedAnimes)
-        setAnimes(fetchedAnimes)
+      .then((res) => {
+        if (res.ok){
+          res.json().then((fetchedAnimes) => {
+              console.log(fetchedAnimes)
+              setAnimes(fetchedAnimes)
+            })
+        }
       })
   }, [])
   
-    //if(!user) return <Login user={user} setUser={setUser} />
 
   return (
     <div className='anime-container'>
-      <h1>Browse through our Collection of Popular Anime</h1>
-      <Cards shows={animes} />
+      {user ? (
+        <div>
+        <h1>Browse through our Collection of Popular Anime</h1>
+        <Cards shows={animes} /> 
+        </div>
+      ) : (
+        <h1>Please Log In or Create an Account</h1>
+      )
+      }
     </div>
   )
 }

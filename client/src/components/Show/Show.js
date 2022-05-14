@@ -68,18 +68,29 @@ export default function Show({ user, setUser }) {
     }).then((res) => res.json())
       .then((data) => console.log(data))
   }
+  const filteredUsers = show?.users?.reduce((acc, current) => {
+    const x = acc.find(item => item.username === current.username);
+    if (!x) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
   return (
     <div className='show-container'>
       <div className='show-top'>
         <div className='show-left'>
           <img src={show.image} alt={show.name} className="show-image" />
           <h1>{show.name}</h1>
-          <NavLink to="/favorites"><button className='favorite-button' onClick={handleAdoption}><h3>Add to Favorites</h3></button></NavLink>
-          {/* <div className='users-lists'>
+          <div>
+            <NavLink to="/favorites"><button className='favorite-button' onClick={handleAdoption}><h3>Add to Favorites</h3></button></NavLink>
+            <div className='users-lists'>
             <h5>Adopted by Users like: {filteredUsers?.map((user) => (
               <h4>{user.username}</h4>
             ))}</h5>
-          </div> */}
+          </div>
+          </div>
+          
         </div>
         <div className='show-details'>
           <h3>Created by: {show.creator}</h3>
