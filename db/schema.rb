@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_13_173818) do
+ActiveRecord::Schema.define(version: 2022_05_13_204956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_05_13_173818) do
 
   create_table "favorites", force: :cascade do |t|
     t.string "show_id"
-    t.string "user_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "anime_id"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2022_05_13_173818) do
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.string "comment"
-    t.string "anime_id"
-    t.string "user_id"
+    t.integer "anime_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "score"

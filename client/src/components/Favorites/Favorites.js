@@ -17,7 +17,7 @@ export default function Favorites({ user, setUser }) {
   
     
   }, [])
-  if(!user) return <Login user={user} setUser={setUser} />
+  //if(!user) return <Login user={user} setUser={setUser} />
 
   return (
     <div>

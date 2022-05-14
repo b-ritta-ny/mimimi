@@ -16,7 +16,6 @@ class ReviewsController < ApplicationController
     end
     def destroy
         review = find_review
-        byebug
         if @current_user.id == review.user_id 
             review.destroy
             head :no_content
@@ -25,8 +24,7 @@ class ReviewsController < ApplicationController
         end
     end
     def update
-        review = find_review
-        byebug 
+        review = find_review 
         if @current_user.id == review.user_id 
             review.update!(review_params)
             render json: review, include: :user, status: :accepted 
