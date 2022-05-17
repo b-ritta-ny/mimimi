@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import Login from '../Login/Login';
+//import Login from '../Login/Login';
 import Reviews from '../Reviews/Reviews';
 import './Show.css';
-
+import { useDispatch } from 'react-redux';
+import { reviewAdded } from '../Reviews/reviewSlice';
+import { favoriteAdded } from '../Favorites/favoriteSlice';
 
 export default function Show({ user, setUser }) {
   const { id } = useParams();
@@ -16,6 +18,7 @@ export default function Show({ user, setUser }) {
     score: undefined,
     title: undefined
   })
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch(`http://localhost:4000/animes/${id}`)
@@ -26,7 +29,7 @@ export default function Show({ user, setUser }) {
         setShow(anime)
       })
   }, [])
-  if(!user) return <Login user={user} setUser={setUser} />
+  //if(!user) return <Login user={user} setUser={setUser} />
 
   function handleChange(event) {
     setRevForm({
@@ -36,37 +39,17 @@ export default function Show({ user, setUser }) {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    fetch("http://localhost:4000/reviews", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(revform),
+    dispatch(reviewAdded(revform))
+    setRevForm({
+      anime_id: id,
+      comment: "",
+      score: "",
+      title: ""
     })
-      .then((res) => {
-        if (res.ok) {
-          res.json().then((newReview) => {
-            setReviews([...reviews, newReview])
-            setRevForm({
-              anime_id: id,
-              comment: "",
-              score: "",
-              title: ""
-            })
-          })
-        }
-      })
   }
   function handleAdoption() {
     let anime_id = id
-    fetch("http://localhost:4000/favorites", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ anime_id }),
-    }).then((res) => res.json())
-      .then((data) => console.log(data))
+    dispatch(favoriteAdded(anime_id))
   }
   const filteredUsers = show?.users?.reduce((acc, current) => {
     const x = acc.find(item => item.username === current.username);
@@ -76,6 +59,7 @@ export default function Show({ user, setUser }) {
       return acc;
     }
   }, []);
+
   return (
     <div className='show-container'>
       <div className='show-top'>
@@ -85,7 +69,7 @@ export default function Show({ user, setUser }) {
           <div>
             <NavLink to="/favorites"><button className='favorite-button' onClick={handleAdoption}><h3>Add to Favorites</h3></button></NavLink>
             <div className='users-lists'>
-            <h5>Adopted by Users like: {filteredUsers?.map((user) => (
+            <h5>Favorited by Users like: {filteredUsers?.map((user) => (
               <h4>{user.username}</h4>
             ))}</h5>
           </div>

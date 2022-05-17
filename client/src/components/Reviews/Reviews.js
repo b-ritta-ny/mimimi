@@ -3,11 +3,12 @@ import './Reviews.css';
 import Select from 'react-select'
 import Reviewcard from './Reviewcard';
 import Revform from '../Revform/Revform';
-
+import { useDispatch } from 'react-redux';
+import { reviewRemoved } from './reviewSlice';
 
 export default function Reviews({ handleSubmit, reviews, setReviews, revform, handleChange }) {
     const [search, setSearch] = useState('All');
-    
+    const dispatch = useDispatch();
 
     const options = [
         { value: 'All', label: 'All' },
@@ -23,16 +24,7 @@ export default function Reviews({ handleSubmit, reviews, setReviews, revform, ha
         return review.score === search;
     });
     function handleDelete(id) {
-        fetch(`http://localhost:4000/reviews/${id}`, {
-            method: "DELETE",
-        }).then((res) => {
-            if (res.ok) {
-                const updatedReviewsList = reviews?.filter((review) => {
-                    return review.id !== id
-                });
-                setReviews(updatedReviewsList)
-            }
-        });
+        dispatch(reviewRemoved(id))
     }
     
       

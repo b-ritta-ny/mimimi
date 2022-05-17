@@ -4,6 +4,7 @@ class AnimesController < ApplicationController
     
     def index 
         animes = Anime.all 
+        byebug
         render json: animes 
     end
     def show 

@@ -7,7 +7,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 //       .then((data) => console.log(data));
 //   });
 
-const animeSlice = createSlice({
+const reviewsSlice = createSlice({
     name: "reviews",
     initialState: {
         entities: [], // array of animes
@@ -27,17 +27,17 @@ const animeSlice = createSlice({
             state.entities.splice(index, 1);
         }
     },
-    extraReducers: {
-        // handle async action types
-        [fetchAnimes.pending](state) {
-          state.status = "loading";
-        },
-        [fetchAnimes.fulfilled](state, action) {
-          state.entities = action.payload;
-          state.status = "idle";
-        },
-      },
+    // extraReducers: {
+    //     // handle async action types
+    //     [fetchAnimes.pending](state) {
+    //       state.status = "loading";
+    //     },
+    //     [fetchAnimes.fulfilled](state, action) {
+    //       state.entities = action.payload;
+    //       state.status = "idle";
+    //     },
+    //   },
 })
-export const { reviewAdded, reviewUpdated, reviewRemoved } = animesSlice.actions;
+export const { reviewAdded, reviewUpdated, reviewRemoved } = reviewsSlice.actions;
 
-export default animeSlice.reducer;
+export default reviewsSlice.reducer;
