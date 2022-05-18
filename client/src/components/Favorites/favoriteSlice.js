@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchFavorites = createAsyncThunk("favorites/fetchFavorites", () => {
-    // return a Promise containing the data we want
-    return fetch("https://localhost:4000/animes")
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  });
+    return fetch("http://localhost:4000/favorites")
+    .then((res) => res.json())
+    .then((fetchedFavorites) => fetchedFavorites)
+})
 
 const favoriteSlice = createSlice({
     name: "favorites",
@@ -16,16 +15,9 @@ const favoriteSlice = createSlice({
     reducers: {
         favoriteAdded(state, action){
             // using createSlice lets us mutate state!
+            debugger;
             state.entities.push(action.payload);
         },
-        favoriteUpdated(state, action){
-            const anime = state.entities.find((anime) => anime.id === action.payload.id);
-            anime.url = action.payload.url;
-        },
-        favoriteRemoved(state, action){
-            const index = state.entities.findIndex((todo) => todo.id === action.payload);
-            state.entities.splice(index, 1);
-        }
     },
     extraReducers: {
         // handle async action types
@@ -38,6 +30,6 @@ const favoriteSlice = createSlice({
         },
       },
 })
-export const { favoriteAdded, favoriteUpdated } = favoriteSlice.actions;
+export const { favoriteAdded } = favoriteSlice.actions;
 
 export default favoriteSlice.reducer;

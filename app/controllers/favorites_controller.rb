@@ -6,6 +6,7 @@ class FavoritesController < ApplicationController
 
     def create 
         new_favorite = @current_user.favorites.create!(favorite_params)
+        byebug
         render json: new_favorite, status: :created
     end
     def index 

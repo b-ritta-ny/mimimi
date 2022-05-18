@@ -7,21 +7,11 @@ import { useDispatch } from 'react-redux';
 import { fetchAnimes } from './animeSlice';
 
 export default function Anime({ user, setUser }) {
-  const [animes, setAnimes] = useState([]);
   const dispatch = useDispatch();
-  const cartoons = useSelector((state) => state.animes.entities)
-  console.log(cartoons)
+  const tvShows = useSelector((state) => state.animes.entities)
 
   useEffect(() => {
-    fetch("http://localhost:4000/animes")
-      .then((res) => {
-        if (res.ok){
-          res.json().then((fetchedAnimes) => {
-              console.log(fetchedAnimes)
-              setAnimes(fetchedAnimes)
-            })
-        }
-      })
+    dispatch(fetchAnimes())
   }, [])
   
 
@@ -30,7 +20,7 @@ export default function Anime({ user, setUser }) {
       {user ? (
         <div>
         <h1>Browse through our Collection of Popular Anime</h1>
-        <Cards shows={animes} /> 
+        <Cards shows={tvShows} /> 
         </div>
       ) : (
         <h1>Please Log In or Create an Account</h1>

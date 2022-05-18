@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Cards from '../Cards/Cards';
 import './Favorites.css';
-import '../Cards/Cards.css'
+import '../Cards/Cards.css';
+import { fetchFavorites } from './favoriteSlice';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function Favorites({ user, setUser }) {
-  const [favorites, setFavorites] = useState([]);
+  const dispatch = useDispatch();
+  const favoritedShows = useSelector((state) => state.favorites.entities)
 
   useEffect(() => {
-    fetch("http://localhost:4000/favorites")
-      .then((res) => {
-        if (res.ok) {
-          res.json().then((fetchedFavorites) => {
-            console.log(fetchedFavorites)
-            setFavorites(fetchedFavorites)
-          })
-        }
-      })
-
-
+  dispatch(fetchFavorites())  
   }, [])
   //if(!user) return <Login user={user} setUser={setUser} />
 
@@ -27,7 +21,7 @@ export default function Favorites({ user, setUser }) {
         <div>
           <h1 className='my-garden-title'>All Your Favorite Anime In One Spot</h1>
           <div>
-            <Cards shows={favorites} />
+            <Cards shows={favoritedShows} />
           </div>
         </div>
       ) : (

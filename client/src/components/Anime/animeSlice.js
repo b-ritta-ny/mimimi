@@ -1,27 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchAnimes = createAsyncThunk("animes/fetchAnimes", () => {
-    // return a Promise containing the data we want
     return fetch("http://localhost:4000/animes")
-        .then((res) => res.json())
-        .then((cartoon) => console.log(cartoon))
+    .then((res) => res.json())
+    .then((data) => data)
 })
 
 const animeSlice = createSlice({
     name: "animes",
     initialState: {
-        entities: [], // array of animes
-        status: "idle", // loading state
+        entities: [],
+        status: "idle", 
     },
     reducers: {
         animeAdded(state, action) {
             // using createSlice lets us mutate state!
             state.entities.push(action.payload);
         },
-        animeUpdated(state, action) {
-            const anime = state.entities.find((anime) => anime.id === action.payload.id);
-            anime.url = action.payload.url;
-        }
     },
     extraReducers: {
         // handle async action types
@@ -34,6 +29,6 @@ const animeSlice = createSlice({
         },
     },
 })
-export const { animeAdded, animeUpdated } = animeSlice.actions;
+export const { animeAdded } = animeSlice.actions;
 
 export default animeSlice.reducer;

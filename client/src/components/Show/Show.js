@@ -49,6 +49,7 @@ export default function Show({ user, setUser }) {
   }
   function handleAdoption() {
     let anime_id = id
+    debugger;
     dispatch(favoriteAdded(anime_id))
   }
   const filteredUsers = show?.users?.reduce((acc, current) => {
