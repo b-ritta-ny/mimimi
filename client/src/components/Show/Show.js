@@ -6,9 +6,9 @@ import Reviews from '../Reviews/Reviews';
 import './Show.css';
 import { useDispatch } from 'react-redux';
 import { reviewAdded } from '../Reviews/reviewSlice';
-import { favoriteAdded } from '../Favorites/favoriteSlice';
+import { favoriteAdded, postFavorite } from '../Favorites/favoriteSlice';
 
-export default function Show({ user, setUser }) {
+export default function Show() {
   const { id } = useParams();
   const [show, setShow] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -47,11 +47,11 @@ export default function Show({ user, setUser }) {
       title: ""
     })
   }
-  function handleAdoption() {
+function handleAdoption() {
     let anime_id = id
-    debugger;
-    dispatch(favoriteAdded(anime_id))
+    dispatch(postFavorite(anime_id))
   }
+
   const filteredUsers = show?.users?.reduce((acc, current) => {
     const x = acc.find(item => item.username === current.username);
     if (!x) {

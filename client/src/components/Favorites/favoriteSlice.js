@@ -5,6 +5,21 @@ export const fetchFavorites = createAsyncThunk("favorites/fetchFavorites", () =>
     .then((res) => res.json())
     .then((fetchedFavorites) => fetchedFavorites)
 })
+export const postFavorite = createAsyncThunk("favorites/postFavorite", (anime_id) => {
+    return fetch("http://localhost:4000/favorites", {
+        method: "POST", 
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({anime_id})
+    })
+    .then((res) => res.json())
+    .then((newFavorite) => {
+        console.log(newFavorite)
+        return newFavorite
+    })
+})
+
 
 const favoriteSlice = createSlice({
     name: "favorites",
@@ -15,7 +30,6 @@ const favoriteSlice = createSlice({
     reducers: {
         favoriteAdded(state, action){
             // using createSlice lets us mutate state!
-            debugger;
             state.entities.push(action.payload);
         },
     },
@@ -26,6 +40,13 @@ const favoriteSlice = createSlice({
         },
         [fetchFavorites.fulfilled](state, action) {
           state.entities = action.payload;
+          state.status = "idle";
+        },
+        [postFavorite.pending](state) {
+          state.status = "loading";
+        },
+        [postFavorite.fulfilled](state, action) {
+          state.entities.push(action.payload)
           state.status = "idle";
         },
       },
