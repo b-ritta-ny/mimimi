@@ -5,7 +5,7 @@ export const fetchAnimes = createAsyncThunk("animes/fetchAnimes", () => {
     .then((res) => res.json())
     .then((data) => data)
 })
-
+export const 
 const animeSlice = createSlice({
     name: "animes",
     initialState: {

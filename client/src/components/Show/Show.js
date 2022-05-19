@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom';
 import Reviews from '../Reviews/Reviews';
 import './Show.css';
 import { useDispatch } from 'react-redux';
-import { reviewAdded } from '../Reviews/reviewSlice';
+import { postReview, reviewAdded } from '../Reviews/reviewSlice';
 import { favoriteAdded, postFavorite } from '../Favorites/favoriteSlice';
+import { useSelector } from 'react-redux';
 
 export default function Show() {
   const { id } = useParams();
   const [show, setShow] = useState([]);
-  const [reviews, setReviews] = useState([]);
   const [revform, setRevForm] = useState({
     anime_id: id,
     comment: undefined,
@@ -24,7 +24,6 @@ export default function Show() {
     fetch(`http://localhost:4000/animes/${id}`)
       .then((res) => res.json())
       .then((anime) => {
-        setReviews(anime.reviews)
         console.log(anime)
         setShow(anime)
       })
@@ -39,7 +38,7 @@ export default function Show() {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(reviewAdded(revform))
+    dispatch(postReview(revform))
     setRevForm({
       anime_id: id,
       comment: "",
@@ -85,7 +84,7 @@ function handleAdoption() {
         </div>
       </div>
       <div className='reviews-div-container'>
-        <Reviews reviews={reviews} setReviews={setReviews} revform={revform}
+        <Reviews revform={revform}
           handleChange={handleChange} handleSubmit={handleSubmit}/>
       </div>
     </div>

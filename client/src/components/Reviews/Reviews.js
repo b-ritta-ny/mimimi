@@ -3,12 +3,13 @@ import './Reviews.css';
 import Select from 'react-select'
 import Reviewcard from './Reviewcard';
 import Revform from '../Revform/Revform';
-import { useDispatch } from 'react-redux';
-import { reviewRemoved } from './reviewSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteReview, reviewRemoved } from './reviewSlice';
 
-export default function Reviews({ handleSubmit, reviews, setReviews, revform, handleChange }) {
+export default function Reviews({ handleSubmit, revform, handleChange }) {
     const [search, setSearch] = useState('All');
     const dispatch = useDispatch();
+    const reviews = useSelector((state) => state.reviews.entities)
 
     const options = [
         { value: 'All', label: 'All' },
@@ -23,8 +24,10 @@ export default function Reviews({ handleSubmit, reviews, setReviews, revform, ha
         if (search === "All") return true;
         return review.score === search;
     });
+
     function handleDelete(id) {
-        dispatch(reviewRemoved(id))
+        dispatch(deleteReview(id))
+        //dispatch(reviewRemoved())
     }
     
       
@@ -44,7 +47,6 @@ export default function Reviews({ handleSubmit, reviews, setReviews, revform, ha
                     return (
                         <Reviewcard review={review}
                             handleDelete={handleDelete}
-                            setReviews={setReviews}
                             reviews={reviews}
                             handleChange={handleChange}
                         />
