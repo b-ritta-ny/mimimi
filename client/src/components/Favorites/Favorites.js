@@ -16,16 +16,16 @@ export default function Favorites({ user, setUser }) {
   //if(!user) return <Login user={user} setUser={setUser} />
 
   return (
-    <div>
+    <div className='favorites-container'>
       {user ? (
         <div>
-          <h1 className='my-garden-title'>All Your Favorite Anime In One Spot</h1>
+          <h1>All Your Favorite Anime In One Spot</h1>
           <div>
             <Cards shows={favoritedShows} />
           </div>
         </div>
       ) : (
-        <h1>Please Log In or Create an Account</h1>
+        <h1 className=''>Please Log In or Create an Account</h1>
       )
       }
     </div>

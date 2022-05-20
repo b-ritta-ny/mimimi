@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Cards from '../Cards/Cards';
 import Login from '../Login/Login';
 import './Anime.css'

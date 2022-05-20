@@ -26,12 +26,7 @@ export default function Reviewcard({ review, handleDelete, reviews }) {
     function handleUpdateSubmission(event) {
         event.preventDefault()
         dispatch(updateReview(updated))
-        setTrigger(!trigger)
-        // const updatedReviewsList = reviews?.filter((singleReview) => {
-        //     return singleReview.id !== review.id 
-        //     });
-        
-        
+        setTrigger(!trigger) 
     }
 
     return (

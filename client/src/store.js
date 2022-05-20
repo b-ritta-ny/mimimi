@@ -9,7 +9,6 @@ const store = configureStore({
         favorites: favoriteSlice,
         shows: showSlice,
     }
-    
 });
 
 export default store;

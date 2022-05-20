@@ -3,7 +3,7 @@ import './Reviews.css';
 import Select from 'react-select'
 import Reviewcard from './Reviewcard';
 import Revform from '../Revform/Revform';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteReview } from '../Show/showSlice';
 
 export default function Reviews({ reviews, handleSubmit, revform, handleChange }) {
@@ -25,10 +25,7 @@ export default function Reviews({ reviews, handleSubmit, revform, handleChange }
 
     function handleDelete(id) {
         dispatch(deleteReview(id))
-        //dispatch(reviewRemoved())
     }
-    
-      
     return (
         <div className='reviews-container'>
             <div className='rev-title-container'>
