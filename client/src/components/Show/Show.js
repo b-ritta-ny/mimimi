@@ -20,7 +20,6 @@ export default function Show() {
   const dispatch = useDispatch();
   const show = useSelector((state) => state.shows.entities)  
   
-  //const reviews = useSelector((state) => state.shows.reviews.entities)
   useEffect(() => {
     dispatch(fetchShow(id))
   }, [])

@@ -5,15 +5,15 @@ export const fetchShow = createAsyncThunk("shows/fetchShow", (id) => {
     .then((res) => res.json())
     .then((show) => show)
 })
-export const updateReview = createAsyncThunk("shows/updateReview", () => {
-    return fetch(`http://localhost:4000/reviews/`, {
+export const updateReview = createAsyncThunk("shows/updateReview", (updated) => {
+    return fetch(`http://localhost:4000/reviews/${updated.review_id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(),
+        body: JSON.stringify(updated),
       }).then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((updatedReview) => updatedReview)
 })
 export const deleteReview = createAsyncThunk("shows/deleteReview", (id) => {
     return fetch(`http://localhost:4000/reviews/${id}`, {
@@ -54,18 +54,16 @@ const showSlice = createSlice({
             state.status = "loading";
         },
         [updateReview.fulfilled](state, action){
-            debugger;
-            const review = state.entities.find((comment) => comment.id === action.payload.id);
+            const review = state.entities.reviews.find((review) => review.id === action.payload.id);
+            state.entities.reviews.splice(review, 1)
+            state.entities.reviews.push(action.payload)
         },
-        [deleteReview.pending](state){
-            debugger;
+        [deleteReview.pending](state,action){
             state.status = "loading";
+            const index = state.entities.reviews.findIndex((review) => review.id === action.payload);
+            state.entities.reviews.splice(index, 1);
         },
-        [deleteReview.fulfilled](state, action){
-            debugger;
-            const index = state.entities.findIndex((todo) => todo.id === action.payload);
-            state.entities.splice(index, 1);
-        },
+        
         [postReview.pending](state) {
           state.status = "loading";
         },

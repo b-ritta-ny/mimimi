@@ -10,7 +10,7 @@ export default function Reviewcard({ review, handleDelete, reviews }) {
         title: review.title,
         score: review.score,
         author: review.author,
-
+        review_id: review.id
     })
     const dispatch = useDispatch();
 
@@ -25,11 +25,12 @@ export default function Reviewcard({ review, handleDelete, reviews }) {
     }
     function handleUpdateSubmission(event) {
         event.preventDefault()
-        dispatch(updateReview(review.id))
-        const updatedReviewsList = reviews?.filter((singleReview) => {
-            return singleReview.id !== review.id 
-            });
+        dispatch(updateReview(updated))
         setTrigger(!trigger)
+        // const updatedReviewsList = reviews?.filter((singleReview) => {
+        //     return singleReview.id !== review.id 
+        //     });
+        
         
     }
 

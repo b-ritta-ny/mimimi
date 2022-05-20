@@ -20,7 +20,6 @@ export const postFavorite = createAsyncThunk("favorites/postFavorite", (anime_id
     })
 })
 
-
 const favoriteSlice = createSlice({
     name: "favorites",
     initialState: {
