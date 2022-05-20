@@ -5,13 +5,12 @@ import { NavLink } from 'react-router-dom';
 import Reviews from '../Reviews/Reviews';
 import './Show.css';
 import { useDispatch } from 'react-redux';
-import { postReview, reviewAdded } from '../Reviews/reviewSlice';
-import { favoriteAdded, postFavorite } from '../Favorites/favoriteSlice';
+import { postFavorite } from '../Favorites/favoriteSlice';
 import { useSelector } from 'react-redux';
+import { fetchShow, postReview } from './showSlice';
 
 export default function Show() {
   const { id } = useParams();
-  const [show, setShow] = useState([]);
   const [revform, setRevForm] = useState({
     anime_id: id,
     comment: undefined,
@@ -19,14 +18,11 @@ export default function Show() {
     title: undefined
   })
   const dispatch = useDispatch();
-
+  const show = useSelector((state) => state.shows.entities)  
+  
+  //const reviews = useSelector((state) => state.shows.reviews.entities)
   useEffect(() => {
-    fetch(`http://localhost:4000/animes/${id}`)
-      .then((res) => res.json())
-      .then((anime) => {
-        console.log(anime)
-        setShow(anime)
-      })
+    dispatch(fetchShow(id))
   }, [])
   //if(!user) return <Login user={user} setUser={setUser} />
 
@@ -84,7 +80,7 @@ function handleAdoption() {
         </div>
       </div>
       <div className='reviews-div-container'>
-        <Reviews revform={revform}
+        <Reviews revform={revform} reviews={show.reviews}
           handleChange={handleChange} handleSubmit={handleSubmit}/>
       </div>
     </div>

@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import './Reviews.css';
+import { useDispatch } from 'react-redux';
+import { updateReview } from '../Show/showSlice';
 
-export default function Reviewcard({ review, handleDelete, setReviews, reviews }) {
+export default function Reviewcard({ review, handleDelete, reviews }) {
     const [trigger, setTrigger] = useState(false);
     const [updated, setUpdated] = useState({
         comment: review.comment,
         title: review.title,
         score: review.score,
-        author: review.author
+        author: review.author,
+
     })
+    const dispatch = useDispatch();
+
     function handleFormChange(event) {
         setUpdated({
             ...updated,
@@ -20,20 +25,12 @@ export default function Reviewcard({ review, handleDelete, setReviews, reviews }
     }
     function handleUpdateSubmission(event) {
         event.preventDefault()
-        fetch(`http://localhost:4000/reviews/${review.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(updated),
-        }).then((res) => {
-          if(res.ok){
-            const updatedReviewsList = reviews?.filter((singleReview) => {
-              return singleReview.id !== review.id 
+        dispatch(updateReview(review.id))
+        const updatedReviewsList = reviews?.filter((singleReview) => {
+            return singleReview.id !== review.id 
             });
-            setReviews([...updatedReviewsList, updated])
-            setTrigger(!trigger)
-        }})
+        setTrigger(!trigger)
+        
     }
 
     return (

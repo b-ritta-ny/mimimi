@@ -5,7 +5,7 @@ export const fetchAnimes = createAsyncThunk("animes/fetchAnimes", () => {
     .then((res) => res.json())
     .then((data) => data)
 })
-export const 
+
 const animeSlice = createSlice({
     name: "animes",
     initialState: {
@@ -27,6 +27,7 @@ const animeSlice = createSlice({
             state.entities = action.payload;
             state.status = "idle";
         },
+        
     },
 })
 export const { animeAdded } = animeSlice.actions;

@@ -4,13 +4,11 @@ import Select from 'react-select'
 import Reviewcard from './Reviewcard';
 import Revform from '../Revform/Revform';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteReview, reviewRemoved } from './reviewSlice';
+import { deleteReview } from '../Show/showSlice';
 
-export default function Reviews({ handleSubmit, revform, handleChange }) {
+export default function Reviews({ reviews, handleSubmit, revform, handleChange }) {
     const [search, setSearch] = useState('All');
     const dispatch = useDispatch();
-    const reviews = useSelector((state) => state.reviews.entities)
-
     const options = [
         { value: 'All', label: 'All' },
         { value: 5, label: 5 },

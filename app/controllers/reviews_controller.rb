@@ -17,7 +17,6 @@ class ReviewsController < ApplicationController
     end
     def destroy
         review = find_review
-        byebug
         if @current_user.id == review.user_id 
             review.destroy
             head :no_content
