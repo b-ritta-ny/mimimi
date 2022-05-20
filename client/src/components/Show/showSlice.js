@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, isRejectedWithValue } from "@reduxjs/toolkit";
 
 export const fetchShow = createAsyncThunk("shows/fetchShow", (id) => {
     return fetch(`http://localhost:4000/animes/${id}`)
@@ -15,24 +15,31 @@ export const updateReview = createAsyncThunk("shows/updateReview", (updated) => 
       }).then((res) => res.json())
       .then((updatedReview) => updatedReview)
 })
-export const deleteReview = createAsyncThunk("shows/deleteReview", (id) => {
+export const deleteReview = createAsyncThunk("shows/deleteReview", (id, { rejectWithValue }) => {
     return fetch(`http://localhost:4000/reviews/${id}`, {
         method: "DELETE",
-    }).then((res) => res.json())
-    .then((data) => {
-        debugger;
-        console.log(data);
-    })
+    }).then((res) => {
+        if(res.ok){
+            return id
+        } else {
+            return rejectWithValue("Not Authorized!")
+        }
+        })
 })
-export const postReview = createAsyncThunk("shows/postReview", (revform) => {
+export const postReview = createAsyncThunk("shows/postReview", (revform, { rejectWithValue }) => {
     return fetch("http://localhost:4000/reviews", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(revform),
-    }).then((res) => res.json())
-    .then((newReview) => newReview)
+    }).then((res) => {
+        if(res.ok){
+            return revform;
+        } else {
+            return rejectWithValue("Not Valid!");
+        }
+    })
 })
 
 const showSlice = createSlice({
@@ -58,12 +65,18 @@ const showSlice = createSlice({
             state.entities.reviews.splice(review, 1)
             state.entities.reviews.push(action.payload)
         },
-        [deleteReview.pending](state,action){
+        [deleteReview.pending](state){
             state.status = "loading";
-            const index = state.entities.reviews.findIndex((review) => review.id === action.payload);
-            state.entities.reviews.splice(index, 1);
+            //const index = state.entities.reviews.findIndex((review) => review.id === action.payload);
+            //state.entities.reviews.splice(index, 1);
         },
-        
+        [deleteReview.fulfilled](state, action){
+            const index = state.entities.reviews.findIndex((review) => review.id == action.payload)     
+            state.entities.reviews.splice(index, 1)
+        },  
+        [deleteReview.rejected](state, action){
+            state.status = action.payload
+        },
         [postReview.pending](state) {
           state.status = "loading";
         },
@@ -71,6 +84,9 @@ const showSlice = createSlice({
             state.entities.reviews.push(action.payload)
             state.status = "idle";
         },
+        [postReview.rejected](state, action){
+            state.status = action.payload
+        }
     },
 })
 
