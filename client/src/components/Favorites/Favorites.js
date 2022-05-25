@@ -12,14 +12,14 @@ export default function Favorites({ user, setUser }) {
 
   useEffect(() => {
   dispatch(fetchFavorites())  
-  }, [])
+  }, [setUser])
   //if(!user) return <Login user={user} setUser={setUser} />
 
   return (
-    <div className='favorites-container'>
+    <div>
       {user ? (
-        <div>
-          <h1>All Your Favorite Anime In One Spot</h1>
+        <div className='favorites-container'>
+          <h1 className='favorites-title'>All Your Favorite Anime In One Spot</h1>
           <div>
             <Cards shows={favoritedShows} />
           </div>

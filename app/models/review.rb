@@ -6,5 +6,6 @@ class Review < ApplicationRecord
     validates :comment, length: {maximum: 100}
     validates :title, length: {maximum: 15}
     validates :score, numericality: { only_integer: true }
+    validates :score, numericality: { in: 1..5 }
     
 end

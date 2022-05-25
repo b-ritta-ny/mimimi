@@ -35,11 +35,13 @@ export const postReview = createAsyncThunk("shows/postReview", (revform, { rejec
         body: JSON.stringify(revform),
     }).then((res) => {
         if(res.ok){
-            return revform;
+            return res.json().then((newReview) => {
+                return newReview;
+            })
         } else {
             return rejectWithValue("Not Valid!");
         }
-    })
+    }).catch((error) => console.log(error))
 })
 
 const showSlice = createSlice({
@@ -61,14 +63,12 @@ const showSlice = createSlice({
             state.status = "loading";
         },
         [updateReview.fulfilled](state, action){
-            const review = state.entities.reviews.find((review) => review.id === action.payload.id);
+            const review = state.entities.reviews.findIndex((review) => review.id === action.payload.id);
             state.entities.reviews.splice(review, 1)
             state.entities.reviews.push(action.payload)
         },
         [deleteReview.pending](state){
             state.status = "loading";
-            //const index = state.entities.reviews.findIndex((review) => review.id === action.payload);
-            //state.entities.reviews.splice(index, 1);
         },
         [deleteReview.fulfilled](state, action){
             const index = state.entities.reviews.findIndex((review) => review.id == action.payload)     
@@ -85,6 +85,7 @@ const showSlice = createSlice({
             state.status = "idle";
         },
         [postReview.rejected](state, action){
+            debugger;
             state.status = action.payload
         }
     },

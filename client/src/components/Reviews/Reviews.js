@@ -3,7 +3,7 @@ import './Reviews.css';
 import Select from 'react-select'
 import Reviewcard from './Reviewcard';
 import Revform from '../Revform/Revform';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteReview } from '../Show/showSlice';
 
 export default function Reviews({ reviews, handleSubmit, revform, handleChange }) {
@@ -17,7 +17,7 @@ export default function Reviews({ reviews, handleSubmit, revform, handleChange }
         { value: 2, label: 2 },
         { value: 1, label: 1 },
     ]
-
+    const error = useSelector((state) => state.error)
     const filteredReviews = reviews?.filter((review) => {
         if (search === "All") return true;
         return review.score === search;
@@ -34,6 +34,9 @@ export default function Reviews({ reviews, handleSubmit, revform, handleChange }
                     <h1>Let us know!</h1>
                 </div>
                 <Revform submit={handleSubmit} change={handleChange} form={revform}/>
+                {error && 
+                    <h3 className='error-message'>{error}</h3>
+                }
             </div>
             <h1>Check out what other members had to say!</h1>
             <Select options={options} className="rev-select" onChange={(e) => setSearch(e.value)} />

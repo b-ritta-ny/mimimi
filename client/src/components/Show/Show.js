@@ -8,8 +8,9 @@ import { useDispatch } from 'react-redux';
 import { postFavorite } from '../Favorites/favoriteSlice';
 import { useSelector } from 'react-redux';
 import { fetchShow, postReview } from './showSlice';
+import Login from '../Login/Login';
 
-export default function Show() {
+export default function Show({ user, setUser }) {
   const { id } = useParams();
   const [revform, setRevForm] = useState({
     anime_id: id,
@@ -23,7 +24,7 @@ export default function Show() {
   useEffect(() => {
     dispatch(fetchShow(id))
   }, [])
-  //if(!user) return <Login user={user} setUser={setUser} />
+  if(!user) return <Login user={user} setUser={setUser} />
 
   function handleChange(event) {
     setRevForm({

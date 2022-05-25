@@ -46,8 +46,8 @@ export default function Reviewcard({ review, handleDelete, reviews }) {
                     <h1>Update Your Review</h1>
                     <form onSubmit={(event) => handleUpdateSubmission(event)}>
                         <label>Title: <input type="text" name="title" value={updated.title} onChange={handleFormChange} /></label>
-                        <label>Score: <input type="text" name="score" value={updated.score} onChange={handleFormChange} /></label>
-                        <label>Comment: <textarea type='text' name="comment" value={updated.comment} onChange={handleFormChange} /></label>
+                        <label>Rate 1 out of 5: <input type="text" name="score" value={updated.score} onChange={handleFormChange} /></label>
+                        <label>Comment:<h6>max(100)</h6> <textarea type='text' name="comment" value={updated.comment} onChange={handleFormChange} /></label>
                         <button type='submit' id="revform-submit-btn">Submit</button>
                     </form>
                 </div> : ""}

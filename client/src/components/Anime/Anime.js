@@ -12,14 +12,16 @@ export default function Anime({ user, setUser }) {
 
   useEffect(() => {
     dispatch(fetchAnimes())
-  }, [])
+  }, [setUser])
   
+  if(!user) return <Login user={user} setUser={setUser} />
+
 
   return (
-    <div className='anime-container'>
+    <div >
       {user ? (
-        <div>
-        <h1>Browse through our Collection of Popular Anime</h1>
+        <div className='anime-container'>
+        <h1 className='anime-title'>Browse through our Collection of Popular Anime</h1>
         <Cards shows={tvShows} /> 
         </div>
       ) : (
