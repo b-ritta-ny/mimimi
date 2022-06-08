@@ -19,14 +19,21 @@
     border: 10px solid rgb(49, 28, 182);
     border-radius: 8px;
     width: 35%;
-    padding: 15px;
+    padding: 10px 0px;
     margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .review-card > h1 {
     border-bottom: 5px;
 }
 .review-comment {
-    margin: 10px 0px;
+    margin: 0;
+}
+.author {
+    margin: 10px;
 }
 .review-buttons-div {
     margin-top: 5px;
@@ -59,4 +66,10 @@
 #revform-submit-btn:hover {
     background-color: white;
     color: purple;
+}
+.review-page-title {
+    font-family: 'Macondo', cursive;
+}
+.review-title {
+    font-family: 'Macondo', cursive;
 }

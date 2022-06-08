@@ -18,6 +18,7 @@ export default function Reviews({ reviews, handleSubmit, revform, handleChange }
         { value: 1, label: 1 },
     ]
     const error = useSelector((state) => state.error)
+    
     const filteredReviews = reviews?.filter((review) => {
         if (search === "All") return true;
         return review.score === search;
@@ -38,7 +39,7 @@ export default function Reviews({ reviews, handleSubmit, revform, handleChange }
                     <h3 className='error-message'>{error}</h3>
                 }
             </div>
-            <h1>Check out what other members had to say!</h1>
+            <h1 className='review-page-title'>Check out what other members had to say!</h1>
             <Select options={options} className="rev-select" onChange={(e) => setSearch(e.value)} />
             <div className='rev-container'>
                 {filteredReviews?.map((review) => {

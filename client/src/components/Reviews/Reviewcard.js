@@ -32,10 +32,10 @@ export default function Reviewcard({ review, handleDelete, reviews }) {
     return (
         // each individual review and it's information 
         <div className='review-card' key={review.id}>
-            <h1>{review.title}</h1>
-            <p className='review-comment'>{review.comment}</p>
+            <h1 className='review-title'>{review.title}</h1>
+            <h4 className='review-comment'>{review.comment}</h4>
+            <h5 className='author'>by: {review?.author}</h5>
             <h3>Rated {review.score} out of 5!</h3>
-            <h3>by: {review?.author}</h3>
             <div className='review-buttons-div'>
                 <button onClick={() => handleDelete(review.id)}>Delete</button>
                 <button onClick={handleEditClick}>Edit</button>

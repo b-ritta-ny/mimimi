@@ -17,6 +17,9 @@
 .card:hover {
     transform: scale(1.08);
 }
+.show-picture {
+    max-height: 350px;
+}
 .show-btn {
     text-decoration: none;
     list-style: none;

@@ -1,9 +1,16 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, isRejectedWithValue } from "@reduxjs/toolkit";
 
-export const fetchAnimes = createAsyncThunk("animes/fetchAnimes", () => {
+export const fetchAnimes = createAsyncThunk("animes/fetchAnimes", (undefined, {rejectWithValue}) => {
     return fetch("http://localhost:4000/animes")
-    .then((res) => res.json())
-    .then((data) => data)
+    .then((res) => {
+        if(res.ok){
+            return res.json().then((animes) => animes)
+        } else {
+            return res.json().then((data) =>{
+                return rejectWithValue(data.error)
+            })
+        }
+    })
 })
 
 const animeSlice = createSlice({
@@ -27,6 +34,10 @@ const animeSlice = createSlice({
             state.entities = action.payload;
             state.status = "idle";
         },
+        [fetchAnimes.rejected](state, action){
+            debugger;
+            state.status = "Empty Bitch"
+        }
         
     },
 })

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Cards from '../Cards/Cards';
 import './Favorites.css';
 import '../Cards/Cards.css';
@@ -11,9 +11,17 @@ export default function Favorites({ user, setUser }) {
   const favoritedShows = useSelector((state) => state.favorites.entities)
 
   useEffect(() => {
-  dispatch(fetchFavorites())  
-  }, [setUser])
-  //if(!user) return <Login user={user} setUser={setUser} />
+    dispatch(fetchFavorites())
+  }, [])
+
+  const filteredShows = favoritedShows?.reduce((acc, current) => {
+    const x = acc.find(show => show.name === current.name);
+    if (!x) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
 
   return (
     <div>
@@ -21,7 +29,7 @@ export default function Favorites({ user, setUser }) {
         <div className='favorites-container'>
           <h1 className='favorites-title'>All Your Favorite Anime In One Spot</h1>
           <div>
-            <Cards shows={favoritedShows} />
+            <Cards shows={filteredShows} />
           </div>
         </div>
       ) : (

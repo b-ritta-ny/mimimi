@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import Home from '../Home/Home';
 import './Login.css';
 
@@ -17,6 +17,7 @@ export default function Login({ user, setUser }) {
         }).then((r) => {
           if (r.ok) {
             r.json().then((user) => {
+              console.log(user)
               setUser(user)
             });
           }

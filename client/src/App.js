@@ -17,7 +17,7 @@ function App() {
      //auto-login
     fetch("/auth").then((res) => {
       if (res.ok) {
-        res.json().then((user) => setUser(user));
+        res.json().then((user) => setUser(user)); 
       }
     });
   }, []);

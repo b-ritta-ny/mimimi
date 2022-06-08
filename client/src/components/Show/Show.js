@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { postFavorite } from '../Favorites/favoriteSlice';
 import { useSelector } from 'react-redux';
 import { fetchShow, postReview } from './showSlice';
-import Login from '../Login/Login';
 
 export default function Show({ user, setUser }) {
   const { id } = useParams();
@@ -19,12 +18,13 @@ export default function Show({ user, setUser }) {
     title: undefined
   })
   const dispatch = useDispatch();
-  const show = useSelector((state) => state.shows.entities)  
-  
+  const show = useSelector((state) => state.shows.entities)
+ 
+
   useEffect(() => {
     dispatch(fetchShow(id))
   }, [])
-  if(!user) return <Login user={user} setUser={setUser} />
+  //if(!user) return <Login user={user} setUser={setUser} />
 
   function handleChange(event) {
     setRevForm({
@@ -32,6 +32,9 @@ export default function Show({ user, setUser }) {
       [event.target.name]: event.target.value,
     })
   }
+
+  
+  
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(postReview(revform))
@@ -63,11 +66,15 @@ function handleAdoption() {
           <img src={show.image} alt={show.name} className="show-image" />
           <h1>{show.name}</h1>
           <div>
-            <NavLink to="/favorites"><button className='favorite-button' onClick={handleAdoption}><h3>Add to Favorites</h3></button></NavLink>
+            <NavLink to="/favorites">
+            <button className='favorite-button' onClick={handleAdoption}>
+              <h3>Add to Favorites</h3>
+            </button>
+            </NavLink>
             <div className='users-lists'>
-            <h5>Favorited by Users like: {filteredUsers?.map((user) => (
-              <h4>{user.username}</h4>
-            ))}</h5>
+            <h2>Favorited by Users like: {filteredUsers?.map((user) => (
+              <h3>{user.username}</h3>
+            ))}</h2>
           </div>
           </div>
           

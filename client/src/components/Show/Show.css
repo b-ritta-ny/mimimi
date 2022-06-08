@@ -11,7 +11,9 @@
 .show-left{ 
     width: 50%;
 }
-
+.show-image {
+    max-height: 375px;
+}
 .show-details {
     width: 50%;
     display: flex;
@@ -36,4 +38,12 @@
 .favorite-button:hover {
     background-color: white;
     color: black;
+}
+.users-lists {
+    padding: 15px;
+    display: flex;
+}
+.users-lists > h2 {
+    font-family: 'Macondo', cursive;
+
 }
