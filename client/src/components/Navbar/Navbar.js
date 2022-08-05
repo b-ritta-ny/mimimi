@@ -18,7 +18,7 @@ export default function Navbar({ user, setUser }) {
         <div>
             <nav className='navbar'>
                 <Link to="/" className="navbar-logo">
-                    Otaku Center 
+                    Mitalist 
                 </Link>
                 <ul className={click ? 'navbar-list active' : 'navbar-list'}>
                         <li className='nav-item'>

@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react';
-import Home from '../Home/Home';
+// import Home from '../Home/Home';
+import Show from '../Show/Show';
 import './Login.css';
 
 export default function Login({ user, setUser }) {
@@ -23,7 +24,7 @@ export default function Login({ user, setUser }) {
           }
         });
     }
-    if(user) return <Home />
+    if (user) return <Show user={user} setUser={setUser} />
 
 
   return (
